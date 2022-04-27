@@ -1,0 +1,38 @@
+{
+  "name": "towers-of-hanoi",
+  "version": "1.0.0",
+  "description": "An interactive browser game based on the Tower of Hanoi",
+  "main": "src/scripts/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrostByte266/towers-of-hanoi.git"
+  },
+  "keywords": [
+    "tower-of-hanoi",
+    "sei",
+    "ga",
+    "project"
+  ],
+  "author": "William Grigor",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/FrostByte266/towers-of-hanoi/issues"
+  },
+  "homepage": "https://github.com/FrostByte266/towers-of-hanoi#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-license-plugin": "^4.2.2"
+  }
+}
