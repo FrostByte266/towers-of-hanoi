@@ -1,1 +1,1 @@
-console.log('Webpack works!')
+import '../styles/style.css'
