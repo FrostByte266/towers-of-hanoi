@@ -13,6 +13,7 @@ module.exports = {
     filename: '[name].bundle.js',
     chunkFilename: '[id].bundle_[chunkhash].js',
     sourceMapFilename: '[file].map',
+    assetModuleFilename: 'assets/[name][ext]',
     clean: true
   },
   plugins: [
@@ -33,6 +34,7 @@ module.exports = {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
+    hot: true,
     port: 5500,
     open: true
  },
@@ -55,6 +57,11 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif)$/i,
         type: 'asset/resource'
+      },
+      {
+        test: /\.svg$/,
+        type: 'asset/resource',
+        use: 'svgo-loader'
       },
     ],
   },
