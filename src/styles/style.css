@@ -1,0 +1,23 @@
+.title {
+    text-align: center;
+}
+
+#towers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100%;
+    height: 90vh;
+}
+
+.tower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+svg {
+    display: block;
+    width:100%;
+    height: auto;
+}
