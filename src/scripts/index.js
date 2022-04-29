@@ -17,7 +17,7 @@ function createDisk(color, scale) {
     fill: color,
     stroke: "black",
     preserveAspectRatio: "none",
-    viewBox: "0 0 204 86.69",
+    viewBox: "1.99999 42.8 96 39.4",
   })
   svg.style.width = `${scale}%`
   svg.style.transform = `translateX(${100 - scale}%)`
