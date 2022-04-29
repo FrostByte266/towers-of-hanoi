@@ -4,7 +4,7 @@ SVGSVGElement.prototype.setAttributeMulti = function (attrs) { // Assign a helpe
   Object.entries(attrs).forEach(([key, value]) => this.setAttribute(key, value))
 }
 
-function createDisk(color, scale) {
+function createDisk(color, scale, stackPos) {
   const svgNS = "http://www.w3.org/2000/svg"
   const svg = document.createElementNS(svgNS, "svg")
   const path = document.createElementNS(svgNS, "path")
@@ -20,7 +20,8 @@ function createDisk(color, scale) {
     viewBox: "1.99999 42.8 96 39.4",
   })
   svg.style.width = `${scale}%`
-  svg.style.transform = `translateX(${100 - scale}%)`
+  svg.style.transform = `translateX(${scale}px)`
+  svg.style.zIndex = stackPos
 
   return svg
 }
@@ -34,8 +35,8 @@ function getRandomColor() {
   return color
 }
 
-for (let i = 4; i > 1; i--) { // Create our stack
+for (let i = 3; i >= 1; i--) { // Create our stack
   document
     .querySelector('div[data-towerNumber="0"]')
-    .appendChild(createDisk(getRandomColor(), 100 - i * 10, 100 - i * 10))
+    .appendChild(createDisk(getRandomColor(), 100 - i * 10, i))
 }
