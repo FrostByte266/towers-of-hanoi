@@ -5,7 +5,7 @@ import { range, getRandomColor } from './helpers.js'
  * @param  { Number } stackPos The position in the stack, starting from bottom to top
  * @return { SVGSVGElement } - The disk SVG element
  */
-function createDisk(stackPos) {
+function createDisk(stackPos, totalDisks) {
   const scale = 100 - stackPos * 10
   const svgNS = "http://www.w3.org/2000/svg"
   const svg = document.createElementNS(svgNS, "svg")
@@ -22,7 +22,7 @@ function createDisk(stackPos) {
     preserveAspectRatio: "none",
     viewBox: "1.99999 42.8 96 39.4",
   })
-  svg.dataset.stackPos = stackPos
+  svg.dataset.stackPos = totalDisks - stackPos
   svg.style.transform = `scale(${scale * 0.01})`
   svg.style.marginBottom = `-${scale * (stackPos * 0.5)}px`
   svg.style.zIndex = stackPos
@@ -37,7 +37,7 @@ function createDisk(stackPos) {
  */
 export function createStack(numDisks, targetEl) {
   range(numDisks, 0, -1).reduce((mount, diskPos) => {
-    mount.appendChild(createDisk(diskPos))
+    mount.appendChild(createDisk(diskPos, numDisks))
     return targetEl
   }, targetEl)
 }
