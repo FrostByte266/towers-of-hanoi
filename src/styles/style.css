@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 80% 20%;
-    height: 90vh;
+    /* height: 90vh; */
 }
 
 div[data-towerNumber] {
@@ -37,4 +37,8 @@ svg {
 
 svg:last-child {
     margin-bottom: 0;
+}
+
+svg:first-child {
+    margin-top: 50px;
 }
