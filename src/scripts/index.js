@@ -1,10 +1,10 @@
+import { range, getRandomColor } from './helpers.js'
+
 import "../styles/style.css" // Styles linked by webpack via imports
 
-SVGSVGElement.prototype.setAttributeMulti = function (attrs) { // Assign a helper function to set many attributes at once
-  Object.entries(attrs).forEach(([key, value]) => this.setAttribute(key, value))
-}
 
-function createDisk(color, scale, stackPos) {
+function createDisk(stackPos) {
+  const scale = 100 - stackPos * 10
   const svgNS = "http://www.w3.org/2000/svg"
   const svg = document.createElementNS(svgNS, "svg")
   const path = document.createElementNS(svgNS, "path")
@@ -13,30 +13,24 @@ function createDisk(color, scale, stackPos) {
     "M2,50 A50,10 0 0,0 98,50 A50,10 0 0,0 2,50 L2,75 A50,10,0 0,0 98,75 L98,50"
   )
   svg.appendChild(path)
-  svg.setAttributeMulti({
-    fill: color,
+  svg.setAttributeMulti({ // This method is added to the prototype in `helpers.js`
+    fill: getRandomColor(),
     stroke: "black",
     preserveAspectRatio: "none",
     viewBox: "1.99999 42.8 96 39.4",
   })
-  svg.style.width = `${scale}%`
-  // svg.style.transform = `translateX(${scale}px)`
+  svg.style.transform = `scale(${scale*0.01})`
+  svg.style.marginBottom = `-${scale*(stackPos * .5)}px`
   svg.style.zIndex = stackPos
 
   return svg
 }
 
-function getRandomColor() {
-  const letters = "0123456789ABCDEF"
-  let color = "#"
-  for (let i=0; i<6; i++) {
-    color += letters[Math.floor(Math.random() * 16)]
-  }
-  return color
+function createStack(numDisks, targetEl) {
+  range(numDisks, 0, -1).reduce((mount, diskPos) => {
+    mount.appendChild(createDisk(diskPos))
+    return targetEl
+  }, targetEl)
 }
 
-for (let i = 3; i >= 1; i--) { // Create our stack
-  document
-    .querySelector('div[data-towerNumber="0"]')
-    .appendChild(createDisk(getRandomColor(), 100 - i * 10, i))
-}
+createStack(3, document.querySelector('div[data-towerNumber="0"]'))
