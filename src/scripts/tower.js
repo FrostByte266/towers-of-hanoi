@@ -24,7 +24,7 @@ function createDisk(stackPos, totalDisks) {
   })
   svg.dataset.stackPos = totalDisks - stackPos
   svg.style.transform = `scale(${scale * 0.01})`
-  svg.style.marginBottom = `-${scale * (stackPos * 0.5)}px`
+  svg.style.marginTop = `-20%`
   svg.style.zIndex = stackPos
 
   return svg

@@ -32,7 +32,6 @@ document.getElementById('settings-form').addEventListener('submit', e => {
   e.preventDefault()
   const data = new FormData(e.target)
   const numDisks = Number(data.get('disk-number'))
-  document.getElementById('towers').classList.remove('hidden')
   e.target.parentNode.classList.add('hidden')
   createStack(numDisks, document.querySelector('div[data-towerNumber="0"]'))
 })
