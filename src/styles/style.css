@@ -3,17 +3,37 @@
 }
 
 #towers {
+    counter-reset: tower-counter 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 100%;
+    grid-template-rows: 80% 20%;
     height: 90vh;
 }
 
+div[data-towerNumber] {
+    counter-increment: tower-counter 1;
+    grid-row: 1;
+}
+
+.count {
+    text-align: center;
+    grid-row: 2;
+}
+
+.count::before {
+    content: counter(tower-counter);
+}
+
 .tower {
+    counter-increment: tower-counter 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+}
+
+.tower::after {
+    content: counter(tower-counter)
 }
 
 svg {

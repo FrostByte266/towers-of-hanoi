@@ -20,7 +20,7 @@ function createDisk(color, scale, stackPos) {
     viewBox: "1.99999 42.8 96 39.4",
   })
   svg.style.width = `${scale}%`
-  svg.style.transform = `translateX(${scale}px)`
+  // svg.style.transform = `translateX(${scale}px)`
   svg.style.zIndex = stackPos
 
   return svg
