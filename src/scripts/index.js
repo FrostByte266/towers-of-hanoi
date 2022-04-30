@@ -2,9 +2,6 @@ import { createStack } from './tower.js'
 
 import "../styles/style.css" // Styles linked by webpack via imports
 
-createStack(3, document.querySelector('div[data-towerNumber="0"]'))
-
-
 document.getElementById('towers').addEventListener('click', e => {
   const baloon = document.getElementById('baloon')
   // Return if anything other than a disk was clicked
@@ -29,4 +26,13 @@ document.getElementById('towers').addEventListener('click', e => {
     baloon.classList.add('showing')
   }
 
+})
+
+document.getElementById('settings-form').addEventListener('submit', e => {
+  e.preventDefault()
+  const data = new FormData(e.target)
+  const numDisks = Number(data.get('disk-number'))
+  document.getElementById('towers').classList.remove('hidden')
+  e.target.parentNode.classList.add('hidden')
+  createStack(numDisks, document.querySelector('div[data-towerNumber="0"]'))
 })

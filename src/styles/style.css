@@ -2,16 +2,15 @@
   text-align: center;
 }
 
-body {
-  position: relative;
-}
-
 #towers {
   counter-reset: tower-counter 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 80% 20%;
-  /* height: 90vh; */
+}
+
+.hidden {
+    display: none;
 }
 
 div[data-towerNumber] {
@@ -76,4 +75,8 @@ svg:first-child {
   height: 0;
 
   margin: 0 auto;
+}
+
+#settings {
+    border: 2px solid blue;
 }

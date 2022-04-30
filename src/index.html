@@ -9,7 +9,15 @@
 <body>
    <h1 class="title">Tower of Hanoi</h1>
    <h2 class="title">A classic game of wit</h2>
-   <div id="towers">
+   <div id="settings">
+       <h3>Game settings</h3>
+       <form id="settings-form">
+           <label for="disk-number">Number of disks:</label>
+           <input name="disk-number" type="number" min="2" max="6" value="3" id="num-disk-selector">
+           <button type="submit">Start Game!</button>
+       </form>
+   </div>
+   <div id="towers" class="hidden">
        <div data-towerNumber="0"></div>
        <h1 class="count"></h1>
        <div data-towerNumber="1"></div>
