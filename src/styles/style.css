@@ -11,6 +11,8 @@
 }
 
 div[data-towerNumber] {
+    align-self: end;
+    bottom: 5px;
     counter-increment: tower-counter 1;
     grid-row: 1;
 }
@@ -25,9 +27,14 @@ div[data-towerNumber] {
 }
 
 svg {
+    bottom: 0;
     display: block;
     position: relative;
     width:100%;
     height: auto;
     margin-bottom: -50px;
+}
+
+svg:last-child {
+    margin-bottom: 0;
 }
