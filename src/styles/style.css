@@ -24,18 +24,6 @@ div[data-towerNumber] {
     content: counter(tower-counter);
 }
 
-.tower {
-    counter-increment: tower-counter 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.tower::after {
-    content: counter(tower-counter)
-}
-
 svg {
     display: block;
     position: relative;
