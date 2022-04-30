@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+body {
+    position: relative;
+}
+
 #towers {
     counter-reset: tower-counter 0;
     display: grid;
@@ -42,3 +46,33 @@ svg:last-child {
 svg:first-child {
     margin-top: 50px;
 }
+
+#baloon {
+    position: absolute;
+    z-index: 100;
+    display: none;
+    border: 3px solid black;
+}
+
+#baloon.showing {
+    display: inline;
+}
+
+#baloon::after { /* Add a triangle to the left edge */
+    content: "";
+  
+    position: absolute;
+    right: 100%;
+    
+    border: 10px solid black;
+    
+    border-left-color: transparent;
+    border-right-color: black;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    
+    width: 0;
+    height: 0;
+    
+    margin: 0 auto;
+  }
