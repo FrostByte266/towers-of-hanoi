@@ -19,6 +19,7 @@ function createDisk(stackPos) {
     preserveAspectRatio: "none",
     viewBox: "1.99999 42.8 96 39.4",
   })
+  svg.dataset.stackPos = stackPos
   svg.style.transform = `scale(${scale*0.01})`
   svg.style.marginBottom = `-${scale*(stackPos * .5)}px`
   svg.style.zIndex = stackPos
