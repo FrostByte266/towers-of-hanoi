@@ -41,3 +41,21 @@ export function createStack(numDisks, targetEl) {
     return targetEl
   }, targetEl)
 }
+
+export function reorderTower(target) {
+
+}
+
+export function moveDisk(sourceTower, targetTower) {
+    const source = document.querySelector(`div[data-tower-number="${sourceTower}"]`)
+    const target = document.querySelector(`div[data-tower-number="${targetTower}"]`)
+
+    const topDisk = source.firstChild
+    topDisk.remove()
+    if (target.childNodes.length === 0) {
+        target.appendChild(topDisk)
+    } else {
+        target.firstChild.before(topDisk)
+    }
+
+}

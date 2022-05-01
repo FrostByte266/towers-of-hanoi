@@ -14,7 +14,7 @@
     display: none;
 }
 
-div[data-towerNumber] {
+div[data-tower-number] {
   align-self: end;
   bottom: 5px;
   counter-increment: tower-counter 1;
