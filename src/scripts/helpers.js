@@ -4,7 +4,7 @@
  * @param  { Number } stop Will go up to, but not including, this number
  * @param  { Number } [step=1] The increment each time, default 1
  */
-export function range(start=0, stop, step=1) {
+export function range(start = 0, stop, step = 1) {
   // see: https://stackoverflow.com/a/8273091
   if (typeof stop == "undefined") {
     // one param defined
@@ -30,7 +30,13 @@ export function range(start=0, stop, step=1) {
  */
 export function getRandomColor() {
   const letters = "0123456789ABCDEF"
-  return "#" + Array(6).fill().map(() => letters[Math.floor(Math.random() * letters.length)]).join('')
+  return (
+    "#" +
+    Array(6)
+      .fill()
+      .map(() => letters[Math.floor(Math.random() * letters.length)])
+      .join("")
+  )
 }
 
 // Assign a helper function to set many attributes at once

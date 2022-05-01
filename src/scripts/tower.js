@@ -1,4 +1,4 @@
-import { range, getRandomColor } from './helpers.js'
+import { range, getRandomColor } from "./helpers.js"
 
 /**
  * Creates a single disk in a stack
@@ -23,6 +23,7 @@ function createDisk(stackPos, totalDisks) {
     viewBox: "1.99999 42.8 96 39.4",
   })
   svg.dataset.stackPos = totalDisks - stackPos
+  svg.dataset.diskSize = totalDisks - stackPos
   svg.style.transform = `scale(${scale * 0.01})`
   svg.style.marginTop = `-20%`
   svg.style.zIndex = stackPos
@@ -42,20 +43,74 @@ export function createStack(numDisks, targetEl) {
   }, targetEl)
 }
 
-export function reorderTower(target) {
-
+/**
+ * Goes through all towers and re-orders all disks
+ */
+function reorderTowers() {
+  const towers = document.querySelectorAll("div[data-tower-number]")
+  Array.from(towers)
+    .map(tower => tower.childNodes)
+    .forEach(disks => {
+      disks.forEach((disk, i) => {
+        disk.dataset.stackPos = i
+      })
+    })
 }
 
+function canMoveToTower(disk, tower) {
+  const diskSize = Number(disk.dataset.diskSize)
+  if (tower.children.length === 0) {
+    console.log(
+      "Tower",
+      tower.dataset.towerNumber,
+      "has no children, returning true"
+    )
+    return true
+  } else {
+    console.log(
+      "Checking via compare for tower",
+      tower,
+      disk,
+      getTopDiskSize(tower)
+    )
+    return diskSize < getTopDiskSize(tower)
+  }
+}
+
+function getTopDiskSize(tower) {
+  return Number(tower.firstChild.dataset.diskSize)
+}
+
+export function filterAvailableMoves(baloon, disk) {
+  const buttons = Array.from(baloon.children)
+  buttons.forEach(button => {
+    const targetTower = document.querySelector(
+      `div[data-tower-number="${button.value}"`
+    )
+    button.disabled = !canMoveToTower(disk, targetTower)
+  })
+}
+
+/**
+ * Moves disk from source to target tower
+ * @param  { Number } sourceTower The target to remove the disk from
+ * @param  { Number } targetTower The target to place the disk on top of
+ */
 export function moveDisk(sourceTower, targetTower) {
-    const source = document.querySelector(`div[data-tower-number="${sourceTower}"]`)
-    const target = document.querySelector(`div[data-tower-number="${targetTower}"]`)
+  const source = document.querySelector(
+    `div[data-tower-number="${sourceTower}"]`
+  )
+  const target = document.querySelector(
+    `div[data-tower-number="${targetTower}"]`
+  )
 
-    const topDisk = source.firstChild
-    topDisk.remove()
-    if (target.childNodes.length === 0) {
-        target.appendChild(topDisk)
-    } else {
-        target.firstChild.before(topDisk)
-    }
+  const topDisk = source.firstChild
+  topDisk.remove()
+  if (target.children.length === 0) {
+    target.appendChild(topDisk)
+  } else {
+    target.firstChild.before(topDisk)
+  }
 
+  reorderTowers()
 }
