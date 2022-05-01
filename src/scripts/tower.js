@@ -60,19 +60,8 @@ function reorderTowers() {
 function canMoveToTower(disk, tower) {
   const diskSize = Number(disk.dataset.diskSize)
   if (tower.children.length === 0) {
-    console.log(
-      "Tower",
-      tower.dataset.towerNumber,
-      "has no children, returning true"
-    )
     return true
   } else {
-    console.log(
-      "Checking via compare for tower",
-      tower,
-      disk,
-      getTopDiskSize(tower)
-    )
     return diskSize < getTopDiskSize(tower)
   }
 }
