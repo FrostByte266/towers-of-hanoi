@@ -1,5 +1,17 @@
 .title {
+  grid-column: 2;
   text-align: center;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+#stats {
+  grid-column: 3;
+  border: 2px solid black;
+  padding: 5px;
 }
 
 #towers {
@@ -70,9 +82,11 @@ svg {
 }
 
 #settings {
+  margin: 5px;
   border: 2px solid blue;
 }
 
-#licenses, #licenses:visited {
+#licenses,
+#licenses:visited {
   color: black;
 }

@@ -34,5 +34,8 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1",
     "webpack-license-plugin": "^4.2.2"
+  },
+  "dependencies": {
+    "duck-timer": "^1.0.3"
   }
 }

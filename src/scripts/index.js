@@ -1,9 +1,23 @@
 import { createStack, moveDisk, filterAvailableMoves } from "./tower.js"
+import {
+  playField,
+  baloon,
+  settingsForm,
+  towers,
+  time,
+  moves,
+} from "./domElements.js"
+import { formatTimer } from "./helpers.js"
+import { DuckTimer as Timer } from "duck-timer"
+import { GameStartEvent } from "./events.js"
 
 import "../styles/style.css" // Styles linked by webpack via imports
 
-document.getElementById("towers").addEventListener("click", e => {
-  const baloon = document.getElementById("baloon")
+const gameTimer = new Timer({ interval: 1000 })
+
+gameTimer.onInterval(({ seconds }) => (time.innerText = formatTimer(seconds)))
+
+playField.addEventListener("click", e => {
   // Return if anything other than a disk was clicked
   // If a disk is clicked, e.target will be SVG path, parent will be SVG el
   if (e.target.parentNode.tagName !== "svg") return
@@ -33,16 +47,25 @@ document.getElementById("towers").addEventListener("click", e => {
   }
 })
 
-document.getElementById("settings-form").addEventListener("submit", e => {
+playField.addEventListener("disk-moved", e => {
+  moves.innerText = Number(moves.innerText) + 1
+})
+
+settingsForm.addEventListener("submit", e => {
   e.preventDefault()
   const data = new FormData(e.target)
   const numDisks = Number(data.get("disk-number"))
-  e.target.parentNode.classList.add("hidden")
-  createStack(numDisks, document.querySelector('div[data-tower-number="0"]'))
+  new GameStartEvent(numDisks).emit()
 })
 
-document.getElementById("baloon").addEventListener("click", e => {
+baloon.addEventListener("click", e => {
   if (e.target.tagName !== "BUTTON") return
   moveDisk(e.target.parentNode.dataset.originTower, e.target.value)
   e.target.parentNode.classList.remove("showing")
+})
+
+document.body.addEventListener("game-start", e => {
+  settingsForm.parentNode.classList.add("hidden")
+  createStack(e.numDisks, towers[0])
+  gameTimer.start()
 })

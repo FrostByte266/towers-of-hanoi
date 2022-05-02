@@ -1,4 +1,5 @@
 import { range, getRandomColor } from "./helpers.js"
+import { DiskMovedEvent } from "./events.js"
 
 /**
  * Creates a single disk in a stack
@@ -101,5 +102,6 @@ export function moveDisk(sourceTower, targetTower) {
     target.firstChild.before(topDisk)
   }
 
+  new DiskMovedEvent(sourceTower, targetTower, topDisk).emit()
   reorderTowers()
 }

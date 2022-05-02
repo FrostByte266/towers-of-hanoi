@@ -39,6 +39,15 @@ export function getRandomColor() {
   )
 }
 
+export function formatTimer(seconds) {
+  const time = new Date(null)
+  time.setSeconds(seconds)
+  return time
+    .toISOString() // 1970-01-01T00:00:04.000Z
+    .substring(11, 19)
+    .replace(/^[0:]+/, "")
+}
+
 // Assign a helper function to set many attributes at once
 /**
  * Assigns many attributes at once
