@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: '16'
 
+      - name: 🔧 Install dependencies
+        run: npm install --include=dev
+
       - name: 📦 Cache dependencies
         uses: actions/cache@v2
         with:
