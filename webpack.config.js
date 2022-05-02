@@ -3,7 +3,7 @@ const LicensePlugin = require('webpack-license-plugin')
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   entry: {
     index: './src/scripts/index.js',
     ossTable: './src/scripts/ossTable.js'
