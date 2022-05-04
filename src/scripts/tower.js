@@ -38,6 +38,7 @@ function createDisk(stackPos, totalDisks, color) {
   svg.style.transform = `scale(${scale * 0.01})`
   svg.style.marginTop = `-20%`
   svg.style.zIndex = stackPos
+  svg.classList.add('disk')
 
   return svg
 }

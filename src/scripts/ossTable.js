@@ -1,3 +1,5 @@
+import '../styles/corner.css'
+
 function elementToAnchor(el, targetHref) {
   const a = document.createElement("a")
   a.innerText = el.innerText
@@ -21,13 +23,13 @@ fetch(window.location.toString().replace(/html/, 'json'))
   .then(data => {
     // Create Table
     const tableEl = document.getElementById("licenses")
-    outputKeys = ["name", "version", "author", "source", "license"]
-    data.forEach(package => {
-      newRow = document.createElement("tr")
+    const outputKeys = ["name", "version", "author", "source", "license"]
+    data.forEach(pkg => {
+      const newRow = document.createElement("tr")
       outputKeys
-        .map(key => [key, package[key]])
+        .map(key => [key, pkg[key]])
         .forEach(([key, value]) => {
-          tableData = document.createElement("td")
+          const tableData = document.createElement("td")
           tableData.innerText = value
           tableData.dataset.key = key
           newRow.appendChild(tableData)
@@ -37,11 +39,11 @@ fetch(window.location.toString().replace(/html/, 'json'))
     // Apply Custom Formatting
 
     // Convert the source links to clickable a tags
-    sourceLinks = document.querySelectorAll("td[data-key=source]")
+    const sourceLinks = document.querySelectorAll("td[data-key=source]")
     sourceLinks.forEach(link => elementToAnchor(link, link.innerText))
 
     // Add click listners to display a popup with the full license text
-    licenses = document.querySelectorAll("td[data-key=license]")
+    const licenses = document.querySelectorAll("td[data-key=license]")
     licenses.forEach((license, i) => {
       elementToAnchor(license, "#")
       license.addEventListener("click", () => alert(data[i].licenseText))

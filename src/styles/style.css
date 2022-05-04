@@ -1,3 +1,5 @@
+@import './corner.css';
+
 :root {
   --main-bg: #006E7F;
   --secondary-bg: #F8CB2E;
@@ -67,7 +69,7 @@ div[data-tower-number] {
   content: counter(tower-counter);
 }
 
-svg {
+.disk {
   bottom: 0;
   display: block;
   position: relative;
