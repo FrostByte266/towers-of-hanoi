@@ -9,7 +9,7 @@ import {
 } from "./domElements.js"
 import { formatTimer } from "./helpers.js"
 import { DuckTimer as Timer } from "duck-timer"
-import { GameStartEvent } from "./events.js"
+import { GameStartEvent, GameEndEvent } from "./events.js"
 
 import "../styles/style.css" // Styles linked by webpack via imports
 
@@ -49,6 +49,11 @@ playField.addEventListener("click", e => {
 
 playField.addEventListener("disk-moved", e => {
   moves.innerText = Number(moves.innerText) + 1
+
+  const disks = e.destination.children
+  if(e.destination.towerNumber !== 0 && disks.length == playField.dataset.numDisks) {
+    new GameEndEvent().emit()
+  }
 })
 
 settingsForm.addEventListener("submit", e => {
@@ -67,5 +72,6 @@ baloon.addEventListener("click", e => {
 document.body.addEventListener("game-start", e => {
   settingsForm.parentNode.classList.add("hidden")
   createStack(e.numDisks, towers[0])
+  playField.dataset.numDisks = e.numDisks
   gameTimer.start()
 })

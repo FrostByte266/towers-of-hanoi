@@ -102,6 +102,6 @@ export function moveDisk(sourceTower, targetTower) {
     target.firstChild.before(topDisk)
   }
 
-  new DiskMovedEvent(sourceTower, targetTower, topDisk).emit()
+  new DiskMovedEvent(source, target, topDisk).emit()
   reorderTowers()
 }
