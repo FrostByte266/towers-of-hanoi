@@ -81,7 +81,7 @@ svg {
   z-index: 100;
   display: none;
   border: 3px solid black;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 
 #baloon.showing {

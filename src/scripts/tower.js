@@ -24,7 +24,11 @@ function createDisk(stackPos, totalDisks, color) {
     x: "45",
     y: "75",
   })
+<<<<<<< HEAD
   tSpan.textContent = stackPos
+=======
+  tSpan.textContent = (totalDisks - stackPos) + 1
+>>>>>>> 6af91b6 (Disks have numbers on them now)
   text.appendChild(tSpan)
   svg.appendChild(text)
 

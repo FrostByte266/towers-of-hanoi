@@ -57,7 +57,7 @@ playField.addEventListener("disk-moved", e => {
 
   const disks = e.destination.children
   if (
-    e.destination.towerNumber != 0 &&
+    e.destination.dataset.towerNumber != 0 &&
     disks.length == playField.dataset.numDisks
   ) {
     new GameEndEvent().emit()
