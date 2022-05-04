@@ -16,7 +16,7 @@ if (window.location.protocol === "file:") {
   document.body.prepend(warningText)
 }
 
-fetch(window.location.origin + "/oss-licenses.json")
+fetch(window.location.toString().replace(/html/, 'json'))
   .then(res => res.json())
   .then(data => {
     // Create Table
