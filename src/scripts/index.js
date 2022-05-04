@@ -8,11 +8,13 @@ import {
   moves,
   scorePopup,
   gameEndMoves,
-  gameEndTime
+  gameEndTime,
+  confetti,
 } from "./domElements.js"
 import { formatTimer } from "./helpers.js"
 import { DuckTimer as Timer } from "duck-timer"
 import { GameStartEvent, GameEndEvent } from "./events.js"
+import colorScale from "./colors.js"
 
 import "../styles/style.css" // Styles linked by webpack via imports
 
@@ -82,10 +84,19 @@ document.body.addEventListener("game-start", e => {
   gameTimer.start()
 })
 
-document.body.addEventListener('game-end', e => {
-  console.log('Game over')
+document.body.addEventListener("game-end", async e => {
+  console.log("Game over")
   gameEndMoves.innerText = moves.innerText
   gameEndTime.innerText = time.innerText
   gameTimer.stop()
   scorePopup.showModal()
+  Array(5)
+    .fill(
+      async () =>
+        await confetti.addConfetti({
+          confettiColors: colorScale.colors(50),
+          confettiNumber: 1000,
+        })
+    )
+    .reduce((prev, next) => prev.then(next), Promise.resolve())
 })

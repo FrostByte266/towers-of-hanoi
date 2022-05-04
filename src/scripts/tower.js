@@ -1,7 +1,6 @@
 import { range } from "./helpers.js"
 import { DiskMovedEvent } from "./events.js"
-
-import Chroma from "chroma-js"
+import colorScale from './colors.js'
 
 /**
  * Creates a single disk in a stack
@@ -40,7 +39,7 @@ function createDisk(stackPos, totalDisks, color) {
  * @param  { HTMLElement } targetEl The element the stack will be mounted to
  */
 export function createStack(numDisks, targetEl) {
-  const scale = Chroma.scale(["#F8CB2E", "#EE5007", "#B22727"]).colors(numDisks) // Creates equidistant colors from a gradient
+  const scale = colorScale.colors(numDisks) // Creates equidistant colors from a gradient
   range(numDisks, 0, -1).reduce((mount, diskPos) => {
     mount.appendChild(createDisk(diskPos, numDisks, scale[diskPos - 1]))
     return targetEl

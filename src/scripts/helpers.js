@@ -28,9 +28,12 @@ export function formatTimer(seconds) {
   const time = new Date(null)
   time.setSeconds(seconds)
   return time
-    .toISOString() // 1970-01-01T00:00:04.000Z
-    .substring(11, 19)
-    .replace(/^[0:]+/, "")
+    .toISOString()
+    .substring(11, 19) // Capture only the H:M:S portion
+    .split(':')
+    .map((t, i) => t + ['h', 'm', 's'].at(i)) // Add hour, minute, or second prefixes
+    .join(' ')
+    .replace(/(00)+[hms]/g, "") // Remove h,m, or s portions that are zero
 }
 
 // Assign a helper function to set many attributes at once
