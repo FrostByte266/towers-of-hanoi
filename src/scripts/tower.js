@@ -12,14 +12,23 @@ function createDisk(stackPos, totalDisks, color) {
   const svgNS = "http://www.w3.org/2000/svg"
   const svg = document.createElementNS(svgNS, "svg")
   const path = document.createElementNS(svgNS, "path")
-  path.setAttribute(
-    "d",
-    "M2,50 A50,10 0 0,0 98,50 A50,10 0 0,0 2,50 L2,75 A50,10,0 0,0 98,75 L98,50"
-  )
+  const text = document.createElementNS(svgNS, "text")
+  const tSpan = document.createElementNS(svgNS, "tspan")
+  // `setAttributeMulti` is set to SVG element prototype in `helpers.js`
+  path.setAttributeMulti({
+    d: "M2,50 A50,10 0 0,0 98,50 A50,10 0 0,0 2,50 L2,75 A50,10,0 0,0 98,75 L98,50",
+    fill: color
+  })
   svg.appendChild(path)
+  text.setAttributeMulti({
+    x: "45",
+    y: "75",
+  })
+  tSpan.textContent = stackPos
+  text.appendChild(tSpan)
+  svg.appendChild(text)
+
   svg.setAttributeMulti({
-    // This method is added to the prototype in `helpers.js`
-    fill: color,
     stroke: "black",
     preserveAspectRatio: "none",
     viewBox: "1.99999 42.8 96 39.4",

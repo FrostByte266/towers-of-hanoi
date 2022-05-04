@@ -41,6 +41,8 @@ export function formatTimer(seconds) {
  * Assigns many attributes at once
  * @param  { {String: any} } attrs
  */
-SVGSVGElement.prototype.setAttributeMulti = function (attrs) {
+function setAttributeMulti(attrs) {
   Object.entries(attrs).forEach(([key, value]) => this.setAttribute(key, value))
 }
+
+SVGElement.prototype.setAttributeMulti = setAttributeMulti
