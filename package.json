@@ -38,6 +38,7 @@
     "webpack-license-plugin": "^4.2.2"
   },
   "dependencies": {
+    "chroma-js": "^2.4.2",
     "duck-timer": "^1.0.3"
   }
 }

@@ -9,3 +9,8 @@ export const settingsForm = document.getElementById("settings-form")
 export const moves = document.getElementById("moves")
 
 export const time = document.getElementById("time")
+
+export const scorePopup = document.getElementById("game-end-screen")
+
+export const gameEndMoves = document.getElementById("end-screen-moves")
+export const gameEndTime = document.getElementById("end-screen-time")

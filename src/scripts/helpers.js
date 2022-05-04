@@ -24,21 +24,6 @@ export function range(start = 0, stop, step = 1) {
   return result
 }
 
-/**
- * Creates a random hex color code
- * @return { String } a random hex color
- */
-export function getRandomColor() {
-  const letters = "0123456789ABCDEF"
-  return (
-    "#" +
-    Array(6)
-      .fill()
-      .map(() => letters[Math.floor(Math.random() * letters.length)])
-      .join("")
-  )
-}
-
 export function formatTimer(seconds) {
   const time = new Date(null)
   time.setSeconds(seconds)

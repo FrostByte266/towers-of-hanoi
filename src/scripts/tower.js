@@ -1,12 +1,14 @@
-import { range, getRandomColor } from "./helpers.js"
+import { range } from "./helpers.js"
 import { DiskMovedEvent } from "./events.js"
+
+import Chroma from "chroma-js"
 
 /**
  * Creates a single disk in a stack
  * @param  { Number } stackPos The position in the stack, starting from bottom to top
  * @return { SVGSVGElement } - The disk SVG element
  */
-function createDisk(stackPos, totalDisks) {
+function createDisk(stackPos, totalDisks, color) {
   const scale = 100 - stackPos * 10
   const svgNS = "http://www.w3.org/2000/svg"
   const svg = document.createElementNS(svgNS, "svg")
@@ -18,7 +20,7 @@ function createDisk(stackPos, totalDisks) {
   svg.appendChild(path)
   svg.setAttributeMulti({
     // This method is added to the prototype in `helpers.js`
-    fill: getRandomColor(),
+    fill: color,
     stroke: "black",
     preserveAspectRatio: "none",
     viewBox: "1.99999 42.8 96 39.4",
@@ -38,8 +40,9 @@ function createDisk(stackPos, totalDisks) {
  * @param  { HTMLElement } targetEl The element the stack will be mounted to
  */
 export function createStack(numDisks, targetEl) {
+  const scale = Chroma.scale(["#F8CB2E", "#EE5007", "#B22727"]).colors(numDisks) // Creates equidistant colors from a gradient
   range(numDisks, 0, -1).reduce((mount, diskPos) => {
-    mount.appendChild(createDisk(diskPos, numDisks))
+    mount.appendChild(createDisk(diskPos, numDisks, scale[diskPos - 1]))
     return targetEl
   }, targetEl)
 }

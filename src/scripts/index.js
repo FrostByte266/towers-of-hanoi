@@ -6,6 +6,9 @@ import {
   towers,
   time,
   moves,
+  scorePopup,
+  gameEndMoves,
+  gameEndTime
 } from "./domElements.js"
 import { formatTimer } from "./helpers.js"
 import { DuckTimer as Timer } from "duck-timer"
@@ -51,7 +54,10 @@ playField.addEventListener("disk-moved", e => {
   moves.innerText = Number(moves.innerText) + 1
 
   const disks = e.destination.children
-  if(e.destination.towerNumber !== 0 && disks.length == playField.dataset.numDisks) {
+  if (
+    e.destination.towerNumber != 0 &&
+    disks.length == playField.dataset.numDisks
+  ) {
     new GameEndEvent().emit()
   }
 })
@@ -74,4 +80,12 @@ document.body.addEventListener("game-start", e => {
   createStack(e.numDisks, towers[0])
   playField.dataset.numDisks = e.numDisks
   gameTimer.start()
+})
+
+document.body.addEventListener('game-end', e => {
+  console.log('Game over')
+  gameEndMoves.innerText = moves.innerText
+  gameEndTime.innerText = time.innerText
+  gameTimer.stop()
+  scorePopup.showModal()
 })

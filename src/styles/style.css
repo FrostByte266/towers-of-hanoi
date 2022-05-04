@@ -1,3 +1,19 @@
+:root {
+  --main-bg: #006E7F;
+  --secondary-bg: #F8CB2E;
+  --primary-text: #dcdbdb;
+  --secondary-text: #262424;
+  --primary: #EE5007;
+  --secondary: #B22727;
+
+  --disabled-cross-color: #610808;
+}
+
+body {
+  color: var(--primary-text);
+  background-color: var(--main-bg);
+}
+
 .title {
   grid-column: 2;
   text-align: center;
@@ -10,7 +26,7 @@ header {
 
 #stats {
   grid-column: 3;
-  border: 2px solid black;
+  border: 2px solid var(--secondary-bg);
   padding: 5px;
 }
 
@@ -51,6 +67,7 @@ svg {
 }
 
 #baloon {
+  background: var(--secondary-bg);
   position: absolute;
   z-index: 100;
   display: none;
@@ -83,10 +100,54 @@ svg {
 
 #settings {
   margin: 5px;
-  border: 2px solid blue;
+  padding: 5px;
+  border: 2px solid var(--secondary-bg);
 }
 
 #licenses,
 #licenses:visited {
-  color: black;
+  color: var(--primary-text);
+}
+
+#baloon > button {
+  background-color: var(--primary);
+  border-radius: 50%;
+  border: none;
+  color: var(--primary-text);
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+
+#baloon > button:hover {
+  cursor: pointer;
+}
+
+#baloon > button:disabled {
+  color: var(--primary-text);
+  filter: hue-rotate(50deg);
+  background:linear-gradient(
+    to left top,
+    transparent 45.5%,
+    var(--disabled-cross-color) 47.5%,
+    var(--disabled-cross-color) 52.5%,
+    transparent 54.5%
+  ),
+  linear-gradient(
+    to right top,
+    transparent 45.5%,
+    var(--disabled-cross-color) 47.5%,
+    var(--disabled-cross-color) 52.5%,
+    transparent 54.5%
+  ),
+  var(--secondary);
+  cursor: not-allowed;
+}
+
+dialog {
+  color: var(--secondary-text);
+  background-color: var(--secondary-bg);
 }
