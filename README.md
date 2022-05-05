@@ -29,11 +29,11 @@ gh repo clone FrostByte266/towers-of-hanoi
 cd towers-of-hanoi/
 ```
 3. Install Dependencies
-```
+```sh
 npm install --include=dev
 ```
 4. Run via Webpack live server (will auto open default browser)
-```
+```sh
 npm start
 ```
 ## Technologies Used
@@ -49,3 +49,23 @@ npm start
 * GitHub Actions
   * This handles taking the source code and invoking the webpack bundler to translate it into the final minified, static files that are served with GitHub Pages
   * Whenever a commit is pushed to the `master` branch, this build and deployment process is carried out automatically.
+## User Stories
+### MVP Goals
+* As a player, I want to be able to play the game with a mouse or touch screen device, so that I can play it anywhere
+* As a player, I want to be able to have my moves and time tracked, and used to calculate a score at the end, so I can compete with my friends
+* As a player, I want to see a game over screen, so I can know when I have beaten the level
+* As a player, I want to be able to change the number of disks on the towers, so I can make the difficulty easier or harder to feel challenged
+
+### Stretch Goals
+* As a player, I want to have some kind of celebratory effect when I win, so I can feel accomplished
+* As a player, I want visual and auditory queues when I move a piece, to feel more immersed in the game
+* As a player, I want to have undo and redo buttons, in case I mess up and want to go back
+
+## Wire Frames
+### Start screen
+
+### Moving
+
+### Making an Invalid move
+
+### Ending Screen
