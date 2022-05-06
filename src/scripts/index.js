@@ -16,7 +16,7 @@ import { DuckTimer as Timer } from "duck-timer"
 import { GameStartEvent, GameEndEvent } from "./events.js"
 import colorScale from "./colors.js"
 
-import "../styles/style.css" // Styles linked by webpack via imports
+import "../styles/style.scss" // Styles linked by webpack via imports
 
 const gameTimer = new Timer({ interval: 1000 })
 
