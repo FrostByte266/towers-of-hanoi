@@ -69,3 +69,15 @@ npm start
 ### Making an Invalid move
 
 ### Ending Screen
+
+## Major Hurdles
+* One of my biggest hurdles was rendering SVG content inline. I had a lot of trouble with getting the SVG elements to scale correctly within their containers. It took me a while, but I eventually figured out that it was a result of a badly set viewBox. Once I fixed that, it worked great.
+* Another hurdle I had to get over was the correct scaling and margins for the SVGs of the disks. Since each svg element would stack on top of one another, I needed a way to displace the content slightly downward so it looked like they were actually stacked and not floating above one another. I eventually solved this by using negative margins. Not my proudest work, but for now it (mostly) works.
+
+## Unsolved Issues
+* On larger displays, the font doesn't scale very well, would like it to be a bit more responsive.
+* When using larger stacks of disks, the spacing can get a little weird.
+
+## Things to Improve
+* As far as the code goes I think it could be a bit more organized. I would like all the logic of rendering towers and moving disks to be abstracted away to a class for organization.
+* I also dislike the use of global variables, I would like to refactor it so that all the elements are passed in as attributes to the event object, so there are no globals.
