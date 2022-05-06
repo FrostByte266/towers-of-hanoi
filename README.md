@@ -81,3 +81,4 @@ npm start
 ## Things to Improve
 * As far as the code goes I think it could be a bit more organized. I would like all the logic of rendering towers and moving disks to be abstracted away to a class for organization.
 * I also dislike the use of global variables, I would like to refactor it so that all the elements are passed in as attributes to the event object, so there are no globals.
+* Some functions were not documented because of the time crunch of the project, would like to go back and document every function
