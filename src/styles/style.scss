@@ -129,7 +129,18 @@ div[data-tower-number] {
 		&:disabled {
 			color: var(--primary-text);
 			filter: hue-rotate(50deg);
-			background: linear-gradient(to left top, transparent 45.5%, var(--disabled-cross-color) 47.5%, var(--disabled-cross-color) 52.5%, transparent 54.5%), linear-gradient(to right top, transparent 45.5%, var(--disabled-cross-color) 47.5%, var(--disabled-cross-color) 52.5%, transparent 54.5%), var(--secondary);
+			background: linear-gradient(
+				to left top, transparent 45.5%,
+				var(--disabled-cross-color) 47.5%,
+				var(--disabled-cross-color) 52.5%, transparent 54.5%
+			),
+			linear-gradient(
+				to right top, transparent 45.5%,
+				var(--disabled-cross-color) 47.5%,
+				var(--disabled-cross-color) 52.5%,
+				transparent 54.5%
+			),
+			var(--secondary);
 			cursor: not-allowed;
 		}
 	}
