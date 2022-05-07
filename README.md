@@ -63,12 +63,16 @@ npm start
 
 ## Wire Frames
 ### Start screen
+![start_page](https://user-images.githubusercontent.com/39464343/167233702-62064640-aaff-4250-892a-d380639a418a.png)
 
 ### Moving
+![moving_a_piece](https://user-images.githubusercontent.com/39464343/167233701-515951e2-9e33-4ed8-af55-afada8740f14.png)
 
 ### Making an Invalid move
+![invalid_move](https://user-images.githubusercontent.com/39464343/167233700-259d5d7a-0ae9-4a79-b7ec-c1b6021b7b94.png)
 
 ### Ending Screen
+![victory_screen](https://user-images.githubusercontent.com/39464343/167233703-92680fcd-2476-4010-9b9c-0c6f77a818b6.png)
 
 ## Major Hurdles
 * One of my biggest hurdles was rendering SVG content inline. I had a lot of trouble with getting the SVG elements to scale correctly within their containers. It took me a while, but I eventually figured out that it was a result of a badly set viewBox. Once I fixed that, it worked great.
