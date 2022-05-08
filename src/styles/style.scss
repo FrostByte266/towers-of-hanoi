@@ -61,10 +61,12 @@ header {
 }
 
 div[data-tower-number] {
+	max-height: 100%;
 	align-self: end;
 	bottom: 5px;
 	counter-increment: tower-counter 1;
 	grid-row: 1;
+	overflow: scroll;
 }
 
 .count {
@@ -77,11 +79,8 @@ div[data-tower-number] {
 }
 
 .disk {
-	bottom: 0;
-	display: block;
+	margin: 0 auto;
 	position: relative;
-	width: 100%;
-	height: auto;
 }
 
 #baloon {

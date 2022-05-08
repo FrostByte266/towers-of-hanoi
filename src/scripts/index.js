@@ -25,9 +25,9 @@ gameTimer.onInterval(({ seconds }) => (time.innerText = formatTimer(seconds)))
 playField.addEventListener("click", e => {
   // Return if anything other than a disk was clicked
   // If a disk is clicked, e.target will be SVG path, parent will be SVG el
-  if (e.target.parentNode.tagName !== "svg") return
+  if (e.target.parentNode.parentNode.tagName !== "DIV") return
   // Only show move dialog if clicking the top most disk
-  else if (e.target.parentNode.dataset.stackPos != 0) {
+  else if (e.target.parentNode.parentNode.dataset.stackPos != 0) {
     // Hide the popup
     baloon.classList.remove("showing")
     return
@@ -40,8 +40,8 @@ playField.addEventListener("click", e => {
   baloon.style.top = clickedDiskRect.top + clickedDiskRect.height * 0.5 + "px"
 
   baloon.dataset.originTower =
-    e.target.parentNode.parentNode.dataset.towerNumber
-  const targetDisk = e.target.parentNode
+    e.target.parentNode.parentNode.parentNode.dataset.towerNumber
+  const targetDisk = e.target.parentNode.parentNode
 
   filterAvailableMoves(baloon, targetDisk)
 
@@ -73,6 +73,7 @@ settingsForm.addEventListener("submit", e => {
 
 baloon.addEventListener("click", e => {
   if (e.target.tagName !== "BUTTON") return
+  console.log(e.target.parentNode)
   moveDisk(e.target.parentNode.dataset.originTower, e.target.value)
   e.target.parentNode.classList.remove("showing")
 })
