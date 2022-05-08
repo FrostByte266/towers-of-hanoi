@@ -3,6 +3,8 @@ import {
   playField,
   baloon,
   settingsForm,
+  numDiskSelector,
+  minMoves,
   towers,
   time,
   moves,
@@ -11,7 +13,7 @@ import {
   gameEndTime,
   confetti,
 } from "./domElements.js"
-import { formatTimer } from "./helpers.js"
+import { formatTimer, getMinMoves } from "./helpers.js"
 import { DuckTimer as Timer } from "duck-timer"
 import { GameStartEvent, GameEndEvent } from "./events.js"
 import colorScale from "./colors.js"
@@ -69,6 +71,10 @@ settingsForm.addEventListener("submit", e => {
   const data = new FormData(e.target)
   const numDisks = Number(data.get("disk-number"))
   new GameStartEvent(numDisks).emit()
+})
+
+numDiskSelector.addEventListener("input", () => {
+  minMoves.innerText = getMinMoves(Number(numDiskSelector.value))
 })
 
 baloon.addEventListener("click", e => {

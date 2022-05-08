@@ -36,6 +36,10 @@ export function formatTimer(seconds) {
     .replace(/(00)+[hms]/g, "") // Remove h,m, or s portions that are zero
 }
 
+export function getMinMoves(numDisks) {
+  return (2**numDisks) - 1
+}
+
 // Assign a helper function to set many attributes at once
 /**
  * Assigns many attributes at once

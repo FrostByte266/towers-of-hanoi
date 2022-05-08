@@ -7,6 +7,8 @@ export const playField = document.getElementById("towers")
 export const baloon = document.getElementById("baloon")
 
 export const settingsForm = document.getElementById("settings-form")
+export const numDiskSelector = document.getElementById("num-disk-selector")
+export const minMoves = document.getElementById("min-moves")
 
 export const moves = document.getElementById("moves")
 
