@@ -12,6 +12,7 @@ import {
   gameEndMoves,
   gameEndTime,
   confetti,
+  loader
 } from "./domElements.js"
 import { formatTimer, getMinMoves } from "./helpers.js"
 import { DuckTimer as Timer } from "duck-timer"
@@ -70,7 +71,8 @@ settingsForm.addEventListener("submit", e => {
   e.preventDefault()
   const data = new FormData(e.target)
   const numDisks = Number(data.get("disk-number"))
-  new GameStartEvent(numDisks).emit()
+  loader.classList.add('loading')
+  setTimeout(() => new GameStartEvent(numDisks).emit(), 1000) // Gives the loader time to render
 })
 
 numDiskSelector.addEventListener("input", () => {
@@ -87,6 +89,7 @@ baloon.addEventListener("click", e => {
 document.body.addEventListener("game-start", e => {
   settingsForm.parentNode.classList.add("hidden")
   createStack(e.numDisks, towers[0])
+    .then(() => loader.classList.remove('loading'))
   playField.dataset.numDisks = e.numDisks
   gameTimer.start()
 })

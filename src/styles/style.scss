@@ -167,3 +167,28 @@ dialog[open] {
 	color: var(--secondary-text);
 	background-color: var(--secondary-bg);
 }
+
+.loader {
+	// transition: all 1s ease-in-out;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(185, 185, 185, 0.75);
+	z-index: 10000;
+	&.loading {
+		display: flex;
+	}
+
+	&:hover {
+		cursor: not-allowed;
+	}
+
+	& > iframe {
+		border: none;
+	}
+}

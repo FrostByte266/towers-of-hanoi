@@ -10,6 +10,8 @@ export const settingsForm = document.getElementById("settings-form")
 export const numDiskSelector = document.getElementById("num-disk-selector")
 export const minMoves = document.getElementById("min-moves")
 
+export const loader = document.querySelector('.loader')
+
 export const moves = document.getElementById("moves")
 
 export const time = document.getElementById("time")

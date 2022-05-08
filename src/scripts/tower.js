@@ -54,16 +54,21 @@ function createDisk(stackPos, totalDisks, color, scale) {
  * Creates a full stack
  * @param  { Number } numDisks The number of disks to be placed in the stack
  * @param  { HTMLElement } targetEl The element the stack will be mounted to
+ * @return { Promise<void> }
  */
 export function createStack(numDisks, targetEl) {
-  const scale = colorScale.colors(numDisks) // Creates equidistant colors from a gradient
-  const space = linspace(100, 50, numDisks)
-  console.log(space)
-  range(numDisks, 0, -1).reduce((mount, diskPos) => {
-    mount.appendChild(createDisk(diskPos, numDisks, scale[diskPos - 1], space[diskPos - 1]))
-    return targetEl
-  }, targetEl)
-  offsetTower(targetEl)
+  return new Promise((resolve, reject) => {
+    const scale = colorScale.colors(numDisks) // Creates equidistant colors from a gradient
+    const space = linspace(100, 50, numDisks)
+    console.log(space)
+    range(numDisks, 0, -1).reduce((mount, diskPos) => {
+      mount.appendChild(createDisk(diskPos, numDisks, scale[diskPos - 1], space[diskPos - 1]))
+      return targetEl
+    }, targetEl)
+    offsetTower(targetEl)
+    resolve()
+  })
+
 }
 /**
  * @param  { HTMLDivElement } tower
