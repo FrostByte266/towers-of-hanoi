@@ -104,6 +104,7 @@ div[data-tower-number] {
 		border-right-color: black;
 		border-top-color: transparent;
 		border-bottom-color: transparent;
+		top: 35%;
 		width: 0;
 		height: 0;
 		margin: 0 auto;
@@ -118,7 +119,7 @@ div[data-tower-number] {
 		text-align: center;
 		text-decoration: none;
 		display: inline-block;
-		font-size: 3em;
+		font-size: 1em;
 		margin: 10px 10px;
 
 		&:hover {
