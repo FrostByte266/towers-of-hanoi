@@ -1,0 +1,31 @@
+$main-bg: #006E7F;
+$secondary-bg: #F8CB2E;
+$primary-text: #dcdbdb;
+$secondary-text: #262424;
+$primary: #EE5007;
+$secondary: #B22727; 
+$disabled-cross-color: #610808;
+	
+:root {
+	--main-bg: #{$main-bg};
+	--secondary-bg: #{$secondary-bg};
+	--primary-text: #{$primary-text};
+	--secondary-text: #{$secondary-text};
+	--primary: #{$primary};
+	--secondary: #{$secondary};
+	--disabled-cross-color: #{$disabled-cross-color};
+}
+
+@font-face {
+	font-family: OpenMind;
+	src: url('./fonts/Openmind-V4mZ.ttf');
+}
+
+* {
+	font-family: OpenMind;
+}
+
+body {
+	color: var(--primary-text);
+	background-color: var(--main-bg);
+}

@@ -1,73 +1,76 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const LicensePlugin = require('webpack-license-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const sveltePreprocess = require('svelte-preprocess');
+
+const mode = process.env.NODE_ENV || 'development';
+const prod = mode === 'production';
 
 module.exports = {
-  mode: process.env.NODE_ENV,
-  entry: {
-    index: './src/scripts/index.js',
-    ossTable: './src/scripts/ossTable.js'
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    chunkFilename: '[id].bundle_[chunkhash].js',
-    sourceMapFilename: '[file].map',
-    assetModuleFilename: 'assets/[name][ext]',
-    clean: true
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      chunks: ['index']
-    }),
-    new HtmlWebPackPlugin({
-      template: './src/oss-licenses.html',
-      filename: './oss-licenses.html',
-      chunks: ['ossTable']
-    }),
-    new LicensePlugin()
-    ],
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    compress: true,
-    hot: true,
-    port: 5500,
-    open: true
- },
- module: {
-    rules: [
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: { minimize: false }
-          }
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        type: 'asset/resource'
-      },
-      {
-        test: /\.ttf$/,
-        type: 'asset/resource'
-      }
-    ],
-  },
-  experiments: {
-    topLevelAwait: true
-  }
+	entry: {
+		'build/bundle': ['./src/main.ts']
+	},
+	resolve: {
+		alias: {
+			svelte: path.dirname(require.resolve('svelte/package.json'))
+		},
+		extensions: ['.mjs', '.js', '.ts', '.svelte'],
+		mainFields: ['svelte', 'browser', 'module', 'main']
+	},
+	output: {
+		path: path.join(__dirname, '/public'),
+		filename: '[name].js',
+		chunkFilename: '[name].[id].js'
+	},
+	module: {
+			rules: [
+				{
+					test: /\.ts$/,
+					loader: 'ts-loader',
+					exclude: /node_modules/
+				},
+				{
+				test: /\.svelte$/,
+				use: {
+					loader: 'svelte-loader',
+					options: {
+						compilerOptions: {
+							dev: !prod
+						},
+						emitCss: prod,
+						hotReload: !prod,
+							preprocess: sveltePreprocess({ sourceMap: !prod })
+					}
+				}
+			},
+			{
+				test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
+                    { loader: 'sass-loader', options: { sourceMap: true } },
+                ],
+			},
+			{
+				// required to prevent errors from Svelte on Webpack 5+
+				test: /node_modules\/svelte\/.*\.mjs$/,
+				resolve: {
+					fullySpecified: false
+				}
+			},
+			{
+				test: /\.ttf$/,
+				type: "asset/resource"
+			}
+		]
+	},
+	mode,
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: '[name].css'
+		})
+	],
+	devtool: prod ? false : 'source-map',
+	devServer: {
+		hot: true
+	}
 };
