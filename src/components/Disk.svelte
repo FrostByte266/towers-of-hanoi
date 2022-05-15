@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   export let color: string | number
   export let scale: number
   export let stackPos: number
